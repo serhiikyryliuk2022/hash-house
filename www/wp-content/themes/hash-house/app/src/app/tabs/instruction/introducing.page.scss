@@ -57,21 +57,6 @@ hashhouse-introducing {
     padding: 60px 20px;
     box-sizing: border-box;
     min-height: 236px;
-
-
-    .block{
-      display: flex;
-      flex-direction: column;
-      .title{
-        font-weight: bold;
-        font-size: 1.6rem;
-      }
-      .text-logo{
-        font-size: 3rem;
-        font-weight: bold;
-      }
-      .description{ font-size: 1.4rem; }
-    }
   }
   img[alt]{
     font-size: 1.2rem;
@@ -85,10 +70,15 @@ hashhouse-introducing {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 25px;
+    h3{
+      font-size: 28px;
+      margin: 25px 0;
+    }
   }
   table{
     text-align: start;
-    width: 800px;
+    max-width: 1200px;
     font-size: 14px;
     border-radius: 10px;
     border-collapse: collapse;
@@ -96,37 +86,24 @@ hashhouse-introducing {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
-    border: 1px solid #C2D1D9;
-    display: block;
-    thead{
-      background: #F4F7F8;
+    outline: 1px solid #e7edf0;
+    box-sizing: border-box;
+    span, p{
+      font-size: 8px;
+      display: block;
     }
+    thead{ background: #F4F7F8 }
     th{
       padding: 10px 15px;
       text-align: start;
-      //border-radius: 10px;
+      border-bottom: 1px solid #e7edf0;
     }
-    td{
-      border: 1px solid #C2D1D9;
-      //&:first-child, &:last-child { border: none }
-
-      //overflow: hidden;
+    td {
+      outline: 1px solid #e7edf0;
       padding: 15px;
-      //border: 1px solid red;
+      box-sizing: border-box;
     }
-    //tr { &:last-child td { border: none; }  }
-    tbody tr{
-      border: 1px solid red;
-    }
-
-
-
-
-
   }
-
-
-
 }
 
 
