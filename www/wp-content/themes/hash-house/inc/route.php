@@ -304,6 +304,10 @@ function introducingPage($cFields): array {
 
 function clearEmptyItems($fields): array
 {
+    if(!is_array($fields)){
+        return [];
+    }
+
     return array_filter($fields ?? [], function($item){
         if(is_array($item)){
             $item = array_map(function($e){
