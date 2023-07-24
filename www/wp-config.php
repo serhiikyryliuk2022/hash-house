@@ -24,7 +24,7 @@ define( 'WPCACHEHOME', '/var/www/html/wp-content/plugins/wp-super-cache/' );
 define( 'DB_NAME', 'hash-house' );
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'hous' );
 
 /** Database password */
 define( 'DB_PASSWORD', '@vocado2023!' );
