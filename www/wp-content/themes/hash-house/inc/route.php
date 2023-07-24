@@ -300,7 +300,7 @@ function introducingPage($cFields): array {
         $result['product_overview'] = [
             'title' => $cFields['product_overview']['title'] ?? null,
             'description' => $cFields['product_overview']['description'] ?? null,
-            'image' => $cFields['product_overview']['image']['url'] ?? null,
+            'image' => $cFields['product_overview']['image'] ?? null,
         ];
     }
 
