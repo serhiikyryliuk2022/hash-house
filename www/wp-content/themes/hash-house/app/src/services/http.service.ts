@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import {ContactFormModel, DownloadFormModel, PageModel, ProductModel, ResponseModel} from "@models";
+import {IIntroducingPage} from "../shared/models/introducing.module";
 
 @Injectable()
 export class HttpService {
@@ -38,4 +39,10 @@ export class HttpService {
 
       return this.http.get<ProductModel>(url);
     }
+
+  getIntroduce() {
+    const namespace = '/wp-json/wp/v2';
+    const url = `${this.url}/${namespace}/page/introduce`;
+    return this.http.get<IIntroducingPage>(url);
+  }
 }

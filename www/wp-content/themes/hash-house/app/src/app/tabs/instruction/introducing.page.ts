@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { combineWithHeader } from '@constants';
 import { EventService, HttpService } from '@services';
 import { BannerModel, cFieldsModel, TeamModel } from "@models";
+import {IIntroducingCFieldsPage, IIntroducingPage} from "../../../shared/models/introducing.module";
 
 @Component({
   selector: 'hashhouse-introducing',
@@ -13,10 +14,15 @@ import { BannerModel, cFieldsModel, TeamModel } from "@models";
 })
 export class IntroducingPage implements OnInit, OnDestroy {
   private readonly PAGE_NAME = 'Instruction';
-  protected top : BannerModel = {};
-  protected banner_2 : BannerModel = {};
-  protected description: string | undefined = '';
-  protected team: TeamModel = { blockName: '', items:[{}] };
+  //protected top : BannerModel = {};
+ // protected banner_2 : BannerModel = {};
+  //protected description: string | undefined = '';
+  //protected team: TeamModel = { blockName: '', items:[{}] };
+
+  protected block_1: { [key: string]: string } | null = null;
+  protected block_2: { [key: string]: string } | null = null;
+  protected product_overview: null | object = null;
+  protected specification_sheet: { [key: string]: string } | null = null;
 
   constructor(
     private title: Title,
@@ -29,18 +35,21 @@ export class IntroducingPage implements OnInit, OnDestroy {
     let self = this;
 
     this.httpService
-      .getPageData('about-us')
-      .subscribe( ({title, cFields}) => {
-        self.title.setTitle(combineWithHeader(title || this.PAGE_NAME));
-        self.initPage(cFields);
+      .getIntroduce()
+      .subscribe( (res: IIntroducingPage) => {
+        if(res.cFields){
+          self.initPage(res.cFields);
+        }
+
+        self.title.setTitle(combineWithHeader(res.title || this.PAGE_NAME));
+
       });
   }
 
-  initPage(cFields: cFieldsModel) {
-    this.top = cFields.top;
-    this.banner_2 = cFields.block3;
-    this.description = cFields.description;
-    this.team = cFields.team;
+  initPage(cFields: IIntroducingCFieldsPage) {
+    this.block_1 = cFields.block_1 || null;
+    this.block_2 = cFields.block_2 || null;
+    this.specification_sheet = cFields.specification_sheet || null;
   }
 
   navigateToTop() {
