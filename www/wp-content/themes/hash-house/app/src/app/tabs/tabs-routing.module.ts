@@ -7,6 +7,7 @@ import { OthersComponent } from "./others/others.page";
 import { PduComponent } from "./pdu/pdu.page";
 import { PsuComponent } from "./psu/psu.page";
 import { TabsComponent } from "./tabs.component";
+import {IntroducingPage} from "./instruction/introducing.page";
 
 const routes: Routes = [
   {
@@ -49,6 +50,13 @@ const routes: Routes = [
     component: TabsComponent,
     children: [
       { path: '', component: AboutComponent, },
+    ]
+  },
+  {
+    path: 'introducing',
+    component: TabsComponent,
+    children: [
+      { path: '', component: IntroducingPage, },
     ]
   },
 

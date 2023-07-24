@@ -9,6 +9,7 @@ import { PsuComponent } from './psu/psu.page';
 import { AboutComponent } from './about/about.page';
 import { CablesComponent } from './cables/cables.page';
 import { CommonModule } from '@angular/common'
+import { IntroducingPage } from "./instruction/introducing.page";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common'
     PduComponent,
     PsuComponent,
     CablesComponent,
+    IntroducingPage
   ],
   imports: [
     AppRoutingModule,
