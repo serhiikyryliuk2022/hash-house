@@ -69,7 +69,7 @@ services:
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
 
   mailhog:
-    container_name: mail
+    container_name: "${COMPOSE_PROJECT_NAME}-mail"
     image: mailhog/mailhog
     ports:
       - 1025:1025

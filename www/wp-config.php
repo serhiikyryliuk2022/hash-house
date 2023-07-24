@@ -21,16 +21,16 @@
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'WPCACHEHOME', '/var/www/html/wp-content/plugins/wp-super-cache/' );
-define( 'DB_NAME', 'hash-house' );
+define( 'DB_NAME', 'house' );
 
 /** Database username */
-define( 'DB_USER', 'hous' );
+define( 'DB_USER', 'admin' );
 
 /** Database password */
-define( 'DB_PASSWORD', '@vocado2023!' );
+define( 'DB_PASSWORD', '1cK41vgeqV' );
 
 /** Database hostname */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', 'database' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
