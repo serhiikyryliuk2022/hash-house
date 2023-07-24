@@ -1,0 +1,33 @@
+<h1>Items available for ordering</h1>
+<!-- <div class="sort-label" (click)="sortClick()">
+    <img src="../../../assets/img/icons/sort.png" alt="">
+    <p>Sort</p>
+</div> -->
+<div class="table-wrapper">
+    <div class="table">
+        <div class="table-header">
+            <h1 *ngFor="let name of table?.header" >{{ name }}</h1>
+            <h1>ACTIONS</h1>
+        </div>
+        <div class="table-body">
+            <div class="table-row" *ngFor="let row of table.rows; let i = index">
+                <p>{{ row.total_current }}</p>
+                <p>{{ row.input_voltage }}</p>
+                <p>{{ row.total_output }}</p>
+                <p>{{ row.sockets }}</p>
+                <p>{{ row.leadtime }}</p>
+                <div class="button-wrapper">
+                    <div class="buttons-border">
+                      <a target="_blank" [href]="broshureClick(i)" >
+                        <button class="custom-button no-border">Broshure
+                            <img [src]="pathUri+'assets/img/icons/download.png'"></button>
+                      </a>
+                        <button class="custom-button no-border blue" (click)="contactUsClick(row.id || '')">Contact
+                            Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <button class="custom-gradient-button-text" (click)="loadMoreClick()">Load more</button> -->

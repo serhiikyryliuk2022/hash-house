@@ -1,0 +1,13 @@
+<div class="image-wrapper">
+    <img [src]="pathUri+'assets/img/' + model.image" alt="">
+</div>
+<h1 class="title">{{ model.title }}</h1>
+<p class="description">{{ model.description }}</p>
+<div class="card-wrapper">
+  <hashhouse-description-card *ngFor="let item of whyChoose;  let i = index" [model]="{
+          numeration: i+1,
+          title: item.title,
+          description: item.description,
+          image: item.image
+  }"/>
+</div>
