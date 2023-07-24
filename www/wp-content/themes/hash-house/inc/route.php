@@ -263,24 +263,28 @@ function introducingPage($cFields): array {
     $result = [];
     if(isset($cFields['block_1'])){
         $result['block_1'] = [
+            'title' => $cFields['block_1']['title'] ?? null,
             'description' => $cFields['block_1']['description'] ?? null,
-            'image' => $cFields['block_1']['image']['url'] ?? null,
+            'main_image' => $cFields['block_1']['main_image'] ?? null,
+            'context_image' => $cFields['block_1']['context_image'] ?? null,
         ];
     }
 
     if(isset($cFields['block_2'])){
         $result['block_2'] = [
+            'title' => $cFields['block_2']['title'] ?? null,
             'description' => $cFields['block_2']['description'] ?? null,
-            'image' => $cFields['block_2']['image']['url'] ?? null,
+            'image' => $cFields['block_2']['image'] ?? null,
         ];
     }
 
     if(isset($cFields['block_3'])){
         $result['block_3'] = [
+            'title' => $cFields['block_3']['title'] ?? null,
             'description' => $cFields['block_3']['description'] ?? null,
             'images' => [
-                'main' => $cFields['block_3']['images']['image_1']['url'] ?? null,
-                'context' => $cFields['block_3']['images']['image_2']['url'] ?? null,
+                'main' => $cFields['block_3']['images']['image_1'] ?? null,
+                'context' => $cFields['block_3']['images']['image_2'] ?? null,
             ]
         ];
     }
@@ -294,6 +298,7 @@ function introducingPage($cFields): array {
 
     if(isset($cFields['product_overview'])){
         $result['product_overview'] = [
+            'title' => $cFields['product_overview']['title'] ?? null,
             'description' => $cFields['product_overview']['description'] ?? null,
             'image' => $cFields['product_overview']['image']['url'] ?? null,
         ];
