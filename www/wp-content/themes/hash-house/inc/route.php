@@ -110,6 +110,9 @@ function getPage($data): WP_Error|WP_REST_Response|WP_HTTP_Response
         case 'home':
             $cFields = formatFieldsForHome($cFields);
             break;
+        case 'introducing':
+            $cFields = introducingPage($cFields);
+            break;
         default:
             $cFields = [];
     }
@@ -253,6 +256,50 @@ function formatFieldsForHome($cFields): array {
 	}, wc_get_products( ['status' => 'publish'] ));
 
     return $cFields;
+}
+
+
+function introducingPage($cFields): array {
+    $result = [];
+    if(isset($cFields['block_1'])){
+        $result['block_1'] = [
+            'description' => $cFields['block_1']['description'] ?? null,
+            'image' => $cFields['block_1']['image']['url'] ?? null,
+        ];
+    }
+
+    if(isset($cFields['block_2'])){
+        $result['block_2'] = [
+            'description' => $cFields['block_2']['description'] ?? null,
+            'image' => $cFields['block_2']['image']['url'] ?? null,
+        ];
+    }
+
+    if(isset($cFields['block_3'])){
+        $result['block_3'] = [
+            'description' => $cFields['block_3']['description'] ?? null,
+            'images' => [
+                'main' => $cFields['block_3']['images']['image_1']['url'] ?? null,
+                'context' => $cFields['block_3']['images']['image_2']['url'] ?? null,
+            ]
+        ];
+    }
+
+    if(isset($cFields['specification_sheet'])){
+        $result['specification_sheet'] = [
+            'title' => $cFields['specification_sheet']['title'] ?? null,
+            'description' => $cFields['specification_sheet']['description'] ?? null,
+        ];
+    }
+
+    if(isset($cFields['product_overview'])){
+        $result['product_overview'] = [
+            'description' => $cFields['product_overview']['description'] ?? null,
+            'image' => $cFields['product_overview']['image']['url'] ?? null,
+        ];
+    }
+
+    return $result;
 }
 
 function clearEmptyItems($fields): array
