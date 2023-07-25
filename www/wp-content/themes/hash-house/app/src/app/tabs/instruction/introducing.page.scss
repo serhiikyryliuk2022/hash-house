@@ -195,11 +195,17 @@ hashhouse-introducing {
     .table {
       margin: 0 -15px;
       table td {
+        vertical-align: baseline;
         width: 50%;
+      }
+      table tr {
         padding: 15px;
         img{ width: 100% }
       }
     }
+
+    table td:first-child ul {padding-right: 50px}
+
     li{ margin-bottom: 15px }
   }
 
