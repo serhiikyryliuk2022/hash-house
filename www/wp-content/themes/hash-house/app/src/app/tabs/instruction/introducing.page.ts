@@ -21,7 +21,7 @@ export class IntroducingPage implements OnInit, OnDestroy {
   protected block_1: { [key: string]: string } | null = null;
   protected block_2: { [key: string]: string } | null = null;
   protected block_3: { [key: string]: string } | null = null;
-  protected product_overview: null | object = null;
+  protected product_overview: { [key: string]: string } | null = null;
   protected specification_sheet: { [key: string]: string } | null = null;
 
   constructor(
@@ -51,6 +51,7 @@ export class IntroducingPage implements OnInit, OnDestroy {
     this.block_2 = cFields.block_2 || null;
     this.block_3 = cFields.block_3 || null;
     this.specification_sheet = cFields.specification_sheet || null;
+    this.product_overview = cFields.product_overview || null;
   }
 
   navigateToTop() {
