@@ -1,4 +1,5 @@
 <div class="introducing-container with-header-offset">
+  <!-- Block 1 -->
   <section class="container full introducing-section" *ngIf="block_1">
     <div class="row"  *ngIf="block_1">
       <div class="col">
@@ -27,6 +28,13 @@
     <section class="container section-image-list  bg-dark small" *ngIf="block_2">
       <div class="table" [innerHTML]="block_2['description']"></div>
     </section>
+
+    <!-- Block 3 -->
+    <section class="container bg-white small" *ngIf="block_3">
+      <img src="{{ block_3['image_main'] }}">
+      <div class="info" [innerHTML]="block_3['description']"></div>
+    </section>
+
 </div>
 
 <!--

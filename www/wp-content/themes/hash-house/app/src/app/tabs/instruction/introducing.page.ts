@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { combineWithHeader } from '@constants';
 import { EventService, HttpService } from '@services';
-import { BannerModel, cFieldsModel, TeamModel } from "@models";
 import {IIntroducingCFieldsPage, IIntroducingPage} from "../../../shared/models/introducing.module";
 
 @Component({
@@ -21,6 +20,7 @@ export class IntroducingPage implements OnInit, OnDestroy {
 
   protected block_1: { [key: string]: string } | null = null;
   protected block_2: { [key: string]: string } | null = null;
+  protected block_3: { [key: string]: string } | null = null;
   protected product_overview: null | object = null;
   protected specification_sheet: { [key: string]: string } | null = null;
 
@@ -49,6 +49,7 @@ export class IntroducingPage implements OnInit, OnDestroy {
   initPage(cFields: IIntroducingCFieldsPage) {
     this.block_1 = cFields.block_1 || null;
     this.block_2 = cFields.block_2 || null;
+    this.block_3 = cFields.block_3 || null;
     this.specification_sheet = cFields.specification_sheet || null;
   }
 
