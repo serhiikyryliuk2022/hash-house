@@ -13,11 +13,11 @@
   </section>
 
   <!-- Product Overview -->
-  <section class="container bg-white small" *ngIf="product_overview">
+  <section class="container product-overview bg-white small" *ngIf="product_overview">
     <div class="row"  *ngIf="product_overview">
       <div class="col">
         <div class="title">{{ product_overview['title'] }}</div>
-        <p class="description" [innerHTML]="product_overview['description']"></p>
+        <div class="description" [innerHTML]="product_overview['description']"></div>
       </div>
       <div class="col">
         <img [src]="product_overview['image']">
