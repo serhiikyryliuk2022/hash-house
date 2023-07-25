@@ -11,7 +11,7 @@
       </div>
     </div>
   </section>
-    <section class="container table bg-white small">
+    <section class="container section-table bg-white small">
       <div class="row">
         <div class="col">
           <div class="table" *ngIf="specification_sheet">
@@ -25,53 +25,14 @@
         </div>
       </div>
     </section>
-    <section class="container section-image-list  bg-dark small" *ngIf="block_2">
+    <section class="container section-image-list  bg-dark full" *ngIf="block_2">
       <div class="table" [innerHTML]="block_2['description']"></div>
     </section>
 
     <!-- Block 3 -->
-    <section class="container bg-white small" *ngIf="block_3">
+    <section class="container section-bottom bg-white small" *ngIf="block_3">
       <img src="{{ block_3['image_main'] }}">
-      <div class="info" [innerHTML]="block_3['description']"></div>
+      <div class="table" [innerHTML]="block_3['description']"></div>
     </section>
 
 </div>
-
-<!--
-
-<div class="about-container with-header-offset">
-
-  <section class="container full preview-section">
-    <div class="image-wrapper">
-      <img src="{{ top.image?.url }}" alt="{{ top.image?.alt }}">
-    </div>
-    <div class="info" [innerHTML]="top.description"></div>
-  </section>
-
-  <section class="container small about-section" [innerHTML]="description"></section>
-
-  <section class="container full overview-section">
-    <h1 [innerHTML]="banner_2.text"></h1>
-    <div class="image-wrapper">
-      <img src="{{ banner_2.image?.url }}" alt="{{ banner_2.image?.alt }}">
-    </div>
-  </section>
-
-  <section class="team-section">
-    <h1>{{ team.blockName }}</h1>
-    <div class="team-cards">
-      <figure class="card" *ngFor="let item of team.items">
-        <ng-template [ngIf]="item.show">
-          <div class="background">
-            <img [src]="item.image?.url" [alt]="item.image?.alt">
-          </div>
-          <figcaption [innerHTML]="item.description"></figcaption>
-        </ng-template>
-      </figure>
-
-    </div>
-  </section>
-
-</div>
-
--->
