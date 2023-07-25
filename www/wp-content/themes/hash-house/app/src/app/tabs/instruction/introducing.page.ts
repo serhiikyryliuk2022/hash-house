@@ -13,6 +13,8 @@ import {IIntroducingCFieldsPage, IIntroducingPage} from "../../../shared/models/
 })
 export class IntroducingPage implements OnInit, OnDestroy {
   private readonly PAGE_NAME = 'Instruction';
+  //@ts-ignore
+  pathUri: string = window.myPostData;
   //protected top : BannerModel = {};
  // protected banner_2 : BannerModel = {};
   //protected description: string | undefined = '';

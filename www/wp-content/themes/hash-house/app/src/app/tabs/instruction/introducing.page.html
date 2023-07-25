@@ -46,6 +46,9 @@
 
     <!-- Block 3 -->
     <section class="container section-bottom bg-white small" *ngIf="block_3">
+      <img width="240"  class="aer" [src]="pathUri+'assets/img/aer.png'" alt="">
+
+<!--      height: 107px;-->
       <img src="{{ block_3['image_main'] }}">
       <div class="table" [innerHTML]="block_3['description']"></div>
     </section>
