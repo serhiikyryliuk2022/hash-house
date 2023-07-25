@@ -278,14 +278,12 @@ function introducingPage($cFields): array {
         ];
     }
 
-    if(isset($cFields['block_3'])){
+    if (isset($cFields['block_3'])) {
         $result['block_3'] = [
             'title' => $cFields['block_3']['title'] ?? null,
             'description' => $cFields['block_3']['description'] ?? null,
-            'images' => [
-                'main' => $cFields['block_3']['images']['image_1'] ?? null,
-                'context' => $cFields['block_3']['images']['image_2'] ?? null,
-            ]
+            'image_main' => $cFields['block_3']['images']['image_1'] ?? null,
+            'image_context' => $cFields['block_3']['images']['image_2'] ?? null,
         ];
     }
 
