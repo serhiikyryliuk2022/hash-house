@@ -10,7 +10,7 @@
       </div>
     </div>
   </section>
-    <section class="container bg-wight small">
+    <section class="container table bg-white small">
       <div class="row">
         <div class="col">
           <div class="table" *ngIf="specification_sheet">
@@ -23,6 +23,9 @@
           </div>
         </div>
       </div>
+    </section>
+    <section class="container section-image-list  bg-dark small" *ngIf="block_2">
+      <div class="table" [innerHTML]="block_2['description']"></div>
     </section>
 </div>
 
