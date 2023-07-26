@@ -61,6 +61,7 @@ hashhouse-introducing {
       font-weight: bold;
       margin: 17px 0 15px;
       line-height: 34px;
+      @media (max-width: 1024px) { font-size: 32px; }
     }
     .description{
       text-align: start;
@@ -68,12 +69,27 @@ hashhouse-introducing {
         font-size: 62px;
         font-weight: bold;
         margin-bottom: 15px;
+        @media (max-width: 1024px) { font-size: 42px; }
       }
-      p{ font-size: 28px }
+      p{
+        font-size: 28px;
+        @media (max-width: 1024px) { font-size: 18px; }
+      }
     }
-    .col{
-      padding: 0 15px;
-      &:first-child{ justify-content: end;  }
+    .row {
+      @media (max-width: 1024px) { flex-direction: column }
+      .col{
+        display: flex;
+        justify-content: center;
+        padding: 0 15px;
+        &:last-child{
+          @media (max-width: 1024px) { align-items: center; }
+        }
+      }
+    }
+    .context-image{
+      display: inline-block;
+      width: 100%;
     }
 
   }
@@ -82,9 +98,14 @@ hashhouse-introducing {
     text-align: start;
     padding: 30px 0 50px;
     font-size: 16px;
-    .row{ margin: 0 -15px }
+    box-sizing: border-box;
+    .row{
+      margin: 0 -15px;
+      @media (max-width: 1024px) {  margin: 0; }
+    }
     .col{ padding: 0 15px; min-width: 320px; }
     .title{
+      box-sizing: border-box;
       font-size: 36px;
       font-weight: bold;
       margin: 0 0 25px;
@@ -99,11 +120,16 @@ hashhouse-introducing {
     align-items: center;
     justify-content: center;
   }
+  .row{
+    box-sizing: border-box;
+    @media (max-width: 1024px) {  padding: 0 15px; }
+  }
   .table{
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 25px;
+
     h3{
       font-size: 28px;
       margin: 25px 0;
@@ -114,17 +140,23 @@ hashhouse-introducing {
     max-width: 1200px;
     font-size: 14px;
     table{
-      border-radius: 10px;
+
       border-collapse: collapse;
       overflow: hidden;
+    }
+    .table-wrapper{
+      border-radius: 10px;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       -khtml-border-radius: 10px;
-      outline: 1px solid #e7edf0;
+      border: 1px solid #e7edf0;
       box-sizing: border-box;
       margin-bottom: 30px;
+      overflow: auto;
+      table{
+        min-width: 1100px;
+      }
     }
-
     span, p{
       font-size: 8px;
       display: block;
@@ -149,7 +181,7 @@ hashhouse-introducing {
     font-size: 14px;
     text-align: start;
     margin-bottom: 25px;
-
+    overflow: auto;
     h1, h2, h3, h4, h5, h6{
       font-size: 32px;
       font-weight: bold;
@@ -159,6 +191,9 @@ hashhouse-introducing {
       display: block;
       margin: auto;
       max-height: 300px;
+    }
+    .table-wrapper{
+      min-width: 768px;
     }
     .table{
       margin: 0 -15px;
@@ -187,11 +222,17 @@ hashhouse-introducing {
     text-align: start;
     padding: 0 15px;
     box-sizing: border-box;
+    overflow: auto;
     &>img{ width: 100% }
     h1, h2, h3, h4, h5, h6{
       font-size: 32px;
       font-weight: bold;
       margin: 0 0 15px 0;
+    }
+    .table-wrapper{
+      box-sizing: border-box;
+      min-width: 425px;
+      @media (max-width: 1024px) {  padding: 0 15px; }
     }
     .table {
       margin: 0 -15px;
