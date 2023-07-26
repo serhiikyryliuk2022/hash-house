@@ -5,7 +5,7 @@ import {IIntroducingPage} from "../shared/models/introducing.module";
 
 @Injectable()
 export class HttpService {
-    private url: string = 'http://localhost';
+    private url: string = 'http://gentlecode.com.ua:8080';
 
     constructor(
         private http: HttpClient,
