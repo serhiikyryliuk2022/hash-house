@@ -37,7 +37,7 @@ export class IntroducingPage implements OnInit, OnDestroy {
     let self = this;
 
     this.httpService
-      .getIntroduce()
+      .getImmersion()
       .subscribe( (res: IIntroducingPage) => {
         if(res.cFields){
           self.initPage(res.cFields);

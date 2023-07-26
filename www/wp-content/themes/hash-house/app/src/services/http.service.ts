@@ -5,7 +5,7 @@ import {IIntroducingPage} from "../shared/models/introducing.module";
 
 @Injectable()
 export class HttpService {
-    private url: string = 'http://gentlecode.com.ua:8080';
+    private url: string = 'http://localhost';
 
     constructor(
         private http: HttpClient,
@@ -40,9 +40,9 @@ export class HttpService {
       return this.http.get<ProductModel>(url);
     }
 
-  getIntroduce() {
+  getImmersion() {
     const namespace = '/wp-json/wp/v2';
-    const url = `${this.url}/${namespace}/page/introduce`;
+    const url = `${this.url}/${namespace}/page/immersion`;
     return this.http.get<IIntroducingPage>(url);
   }
 }

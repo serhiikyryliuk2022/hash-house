@@ -111,7 +111,7 @@ function getPage($data): WP_Error|WP_REST_Response|WP_HTTP_Response
             $cFields = formatFieldsForHome($cFields);
             break;
         case 'immersion':
-            $cFields = introducingPage($cFields);
+            $cFields = immersionPage($cFields);
             break;
         default:
             $cFields = [];
@@ -259,7 +259,7 @@ function formatFieldsForHome($cFields): array {
 }
 
 
-function introducingPage($cFields): array {
+function immersionPage($cFields): array {
     $result = [];
     if(isset($cFields['block_1'])){
         $result['block_1'] = [
