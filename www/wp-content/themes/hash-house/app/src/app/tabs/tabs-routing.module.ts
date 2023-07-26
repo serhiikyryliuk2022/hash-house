@@ -53,7 +53,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'introducing',
+    path: 'immersion',
     component: TabsComponent,
     children: [
       { path: '', component: IntroducingPage, },

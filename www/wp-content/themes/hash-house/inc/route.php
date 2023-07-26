@@ -110,7 +110,7 @@ function getPage($data): WP_Error|WP_REST_Response|WP_HTTP_Response
         case 'home':
             $cFields = formatFieldsForHome($cFields);
             break;
-        case 'introduce':
+        case 'immersion':
             $cFields = introducingPage($cFields);
             break;
         default:
