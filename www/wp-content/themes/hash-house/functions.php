@@ -4,14 +4,6 @@ require get_theme_file_path('inc/route.php');
 require get_theme_file_path('inc/filters.php');
 require get_theme_file_path('inc/mail-settings.php');
 
-add_action('wp_head', 'wpse_add_inline_script');
-function wpse_add_inline_script() {
-	$pathUri = get_template_directory_uri() . '/app/dist/hash-house/';
-	echo '<script>' . PHP_EOL;
-	echo "window.myPostData = '{$pathUri}';";
-	echo '</script>' . PHP_EOL;
-}
-
 add_action( 'wp_enqueue_scripts', function (): void {
 	$pathUri = get_template_directory_uri() . '/app/dist/hash-house/';
 	$pathTemplate = get_template_directory() . '/app/dist/hash-house/';

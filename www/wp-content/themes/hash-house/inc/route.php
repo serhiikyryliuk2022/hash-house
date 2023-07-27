@@ -1,6 +1,9 @@
 <?php
+define( 'URL_RESOURCES', get_template_directory_uri().'/app/dist/hash-house' );
+
 add_action( 'rest_api_init', 'wpcf7_rest_api_init' );
 add_action( 'rest_api_init', 'api_init' );
+
 
 function wpcf7_rest_api_init($t) {
 	$namespace = 'app/v1';
@@ -17,12 +20,12 @@ function wpcf7_rest_api_init($t) {
 		'callback' => 'downloadForm',
 	]);
 
-	$namespace = 'contact-form-7/v1';
-	register_rest_route( $namespace ,
-		'/contact-forms/(?P<id>\d+)/feedback', [
-		'methods'  => WP_REST_Server::CREATABLE,
-		'callback' => 'submitContact',
-	]);
+//	$namespace = 'contact-form-7/v1';
+//	register_rest_route( $namespace ,
+//		'/contact-forms/(?P<id>\d+)/feedback', [
+//		'methods'  => WP_REST_Server::CREATABLE,
+//		'callback' => 'submitContact',
+//	]);
 
 };
 
@@ -36,6 +39,12 @@ function api_init() {
 	]);
 
 	register_rest_route( $namespace ,
+		'/footer', [
+		'methods'  => WP_REST_Server::READABLE,
+		'callback' => 'getFooter',
+	]);
+
+	register_rest_route( $namespace ,
 		'/product/(?P<slug>[a-zA-Z0-9-]+)', [
 		'methods'  => WP_REST_Server::READABLE,
 		'callback' => 'getProduct',
@@ -44,6 +53,13 @@ function api_init() {
 
 function getProduct( WP_REST_Request $request ) {
 	$product = get_page_by_path( $request['slug'], OBJECT, 'product' );
+
+
+	$cpFields =[];
+	$pFooter = get_page_by_path('procuct-fielsd');
+	if($pFooter) {
+		$cpFields = get_fields($pFooter->ID)[$request['slug']];
+	}
 
 	if ( empty( $product ) ) {
 		return rest_ensure_response( [] );
@@ -82,7 +98,9 @@ function getProduct( WP_REST_Request $request ) {
 		],
 		'variations' => getVariable($product->get_id()),
 		'gallery' => $gallery,
-		'whyChoose' => $whyChoose
+		'whyChoose' => $whyChoose,
+		'cpFields' => $cpFields,
+		'url' => URL_RESOURCES
 	];
 
 	return rest_ensure_response($response);
@@ -121,9 +139,31 @@ function getPage($data): WP_Error|WP_REST_Response|WP_HTTP_Response
         'title' => get_the_title($page),
         'content' => $page->post_content,
         'cFields' => $cFields,
+        'url' => URL_RESOURCES
     ];
 
     return rest_ensure_response($response);
+}
+
+function getFooter() {
+	$pFooter = get_page_by_path('footer');
+
+	$footerData = array_map(function ($item){
+		$items = array_filter($item);
+		$result = [];
+		foreach ($items as $key => $item){
+			$result[]= [
+				'name' => $key,
+				'data' => $item,
+			];
+		}
+		return $result;
+	}, get_fields($pFooter->ID) ?: []);
+
+	return rest_ensure_response(array_merge(
+		$footerData,
+		['url' => URL_RESOURCES]
+	));
 }
 
 function submitContact( WP_REST_Request $request ){
@@ -170,6 +210,14 @@ function downloadForm( WP_REST_Request $request ){
 	$product = get_page_by_path( $productUri, OBJECT, 'product' );
 	$uploadDir = wp_upload_dir()['basedir'];
 
+	global $wpdb;
+	$tDownload = $wpdb->get_row( "SELECT * FROM `wp_download_counter` WHERE product_id = {$product->ID}", OBJECT );
+	if(empty($tDownload)){
+		$wpdb->query("INSERT INTO `wp_download_counter` (`product_id`, `count`) VALUES ($product->ID, 1)");
+	} else {
+		$wpdb->query("UPDATE `wp_download_counter` SET `count` = count+1 WHERE `product_id` = {$product->ID};");
+	}
+
 	$uploadFiles = array_map(function($url) use ($uploadDir){
 		return substr_replace($url, $uploadDir,
 			0, strripos($url, '/woocommerce_uploads')
@@ -199,7 +247,7 @@ function downloadForm( WP_REST_Request $request ){
 	$body = str_replace("[name-825]", $args['name'], $properties['mail']['body']);
 	$headers[] = "From: ". get_bloginfo('name') ."<".get_bloginfo('admin_email').">";
 
-	$success = wp_mail($to, $subject, $body, $headers, $uploadFiles);
+	wp_mail($to, $subject, $body, $headers, $uploadFiles);
 
 	$response = array(
 		'status' => "OK",
@@ -302,7 +350,7 @@ function immersionPage($cFields): array {
         ];
     }
 
-    return $result;
+    return $result + ['url' => URL_RESOURCES];
 }
 
 function clearEmptyItems($fields): array
@@ -333,9 +381,15 @@ function clearEmptyItems($fields): array
 }
 
 function getVariable($productId): array {
+	global $wpdb;
+	$tDownload = $wpdb->get_row( "SELECT * FROM `wp_download_counter` WHERE product_id = {$productId}", OBJECT );
+	$dwCount = $tDownload->count;
+
 	$variationsResult = [
 		'rows' => [],
-		'files' => false
+		'files' => false,
+		'count' => 0,
+		'dwCount' => intval($dwCount),
 	];
 
 	$wcProduct = wc_get_product( $productId );
@@ -349,7 +403,7 @@ function getVariable($productId): array {
 		}
 
 		foreach ( $variations as $key => $variant ) {
-			$attrs = [ 'id' => $variant->get_id() ];
+			$attrs = [];
 			if($variant->get_downloadable()) {
 				$files = $variant->get_downloads( 'edit' );
 				$file = array_shift( $files );
@@ -359,11 +413,11 @@ function getVariable($productId): array {
 			foreach ( $variant->get_attributes( 'edit' ) as $taxonomy => $val ) {
 				$term = get_term_by( 'slug', $val, $taxonomy );
 
-				$taxonomy           = str_replace( 'pa_', '', $taxonomy );
-				$attrs[ $taxonomy ] = $term->name;
+				$attrs[] = $term ? $term->name : '';
 			}
 			$variationsResult['rows'][ $key ] = $attrs;
 		}
+		$variationsResult['count'] = count($wcProduct->get_children());
 	}
 
 	return 	$variationsResult;
