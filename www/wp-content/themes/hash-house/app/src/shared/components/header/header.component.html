@@ -1,0 +1,51 @@
+<div class="container small header">
+
+    <div class="mobile-view">
+        <div class="burger-menu" (click)="toggleMobileNavigation()">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+        <nav #mobileNav>
+            <div class="nav-content">
+                <ul class="nav-items">
+                    <li routerLinkActive="active-tab"><a routerLink="/pdu">PDU</a></li>
+                    <li routerLinkActive="active-tab"><a routerLink="/psu">PSU</a></li>
+                    <li routerLinkActive="active-tab"><a routerLink="/cables">Cables</a></li>
+                    <li routerLinkActive="active-tab"><a routerLink="/about">About</a></li>
+                    <li routerLinkActive="active-tab"><a routerLink="/immersion">Immersion</a></li>
+                </ul>
+                <div class="logo">
+                    <a routerLink="/home">
+                        <img *ngIf="url" [src]="url+'/assets/img/logo-b.svg'" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="background" (click)="hideMobileNavigation()"></div>
+        </nav>
+        <div class="button-wrapper">
+            <a class="custom-button gray" href="/#contact-form">Get in touch</a>
+        </div>
+    </div>
+
+    <div class="desktop-view">
+        <div class="logo">
+            <a routerLink="/home">
+                <img *ngIf="url" [src]="url+'/assets/img/logo-b.svg'" alt="">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-items">
+                <li class="custom-link-hover" routerLinkActive="active-tab"><a routerLink="/pdu">PDU</a></li>
+                <li class="custom-link-hover" routerLinkActive="active-tab"><a routerLink="/psu">PSU</a></li>
+                <li class="custom-link-hover" routerLinkActive="active-tab"><a routerLink="/cables">Cables</a></li>
+                <li class="custom-link-hover" routerLinkActive="active-tab"><a routerLink="/about">About</a></li>
+                <li class="custom-link-hover" routerLinkActive="active-tab"><a routerLink="/immersion">Immersion</a></li>
+            </ul>
+        </nav>
+        <div class="button-wrapper">
+            <a class="custom-button gray" href="/#contact-form">Get in touch</a>
+        </div>
+    </div>
+
+</div>

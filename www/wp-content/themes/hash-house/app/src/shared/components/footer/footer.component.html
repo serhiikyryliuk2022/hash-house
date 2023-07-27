@@ -1,0 +1,29 @@
+<div *ngIf="model.url" class="container small footer">
+    <div class="left-side">
+        <img class="logo" [src]="model.url+'/assets/img/logo-w.svg'" alt="">
+        <div class="social">
+            <a *ngFor="let item of model.social" [href]="item.data.link" [title]="item.name">
+                <img [src]="item.data.image.url" alt="">
+            </a>
+        </div>
+        <div class="additional">
+            <a href="">Privacy Policy</a>
+            <a href="">Cookie Policy</a>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="info-list products">
+            <h4>Products:</h4>
+            <a *ngFor="let item of model.productsLinks" [href]="item.data.url">{{item.data.title}}</a>
+        </div>
+        <div class="info-list services">
+            <h4>Services:</h4>
+            <a *ngFor="let item of model.servicesLinks" [href]="item.data.url">{{item.data.title}}</a>
+        </div>
+    </div>
+</div>
+<div class="arrow-container">
+    <div class="arrow-up" (click)="goToTop()">
+        <img *ngIf="model?.url" [src]="model.url+'/assets/img/icons/arrow-up.png'" alt="">
+    </div>
+</div>

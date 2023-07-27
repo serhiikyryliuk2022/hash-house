@@ -1,0 +1,7 @@
+<div class="loading-container" [class.show]="(isShowLoading$ | async) && !(isLoadingAnimationHide$ | async)"
+    [class.animationShow]="isLoadingAnimationShow$ | async"
+    [class.hide]="!(isShowLoading$ | async) && !(isLoadingAnimationShow$ | async)"
+    [class.animationHide]="isLoadingAnimationHide$ | async">
+
+    <img class="spinner" src="../../../favicon.ico" alt="">
+</div>

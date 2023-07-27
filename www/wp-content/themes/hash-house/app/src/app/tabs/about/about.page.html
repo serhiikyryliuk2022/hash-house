@@ -1,0 +1,37 @@
+<div class="about-container with-header-offset">
+
+    <!-- Hash House Tech -->
+    <section class="container full preview-section">
+        <div class="image-wrapper">
+            <img src="{{ top.image?.url }}" alt="{{ top.image?.alt }}">
+        </div>
+        <div class="info" [innerHTML]="top.description"></div>
+    </section>
+
+    <!-- About Us -->
+    <section class="container full about-section" [innerHTML]="description"></section>
+
+    <!-- Meet the team -->
+    <section class="team-section">
+        <h1>{{ team.blockName }}</h1>
+        <div class="team-cards">
+            <figure class="card" *ngFor="let item of team.items">
+                <ng-template [ngIf]="item.show">
+                    <div class="background">
+                        <img [src]="item.image?.url" [alt]="item.image?.alt">
+                    </div>
+                    <figcaption [innerHTML]="item.description"></figcaption>
+                </ng-template>
+            </figure>
+        </div>
+    </section>
+
+  <!-- Hash House overview -->
+  <section class="container full overview-section">
+    <h1 [innerHTML]="banner_2.text"></h1>
+    <div class="image-wrapper">
+      <img src="{{ banner_2.image?.url }}" alt="{{ banner_2.image?.alt }}">
+    </div>
+  </section>
+
+</div>

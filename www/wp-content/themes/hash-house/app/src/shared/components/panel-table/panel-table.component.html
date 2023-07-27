@@ -1,0 +1,31 @@
+<h1 #tableTitle>{{cFields.tableName}}</h1>
+<!-- <div class="sort-label" (click)="sortClick()">
+    <img src="../../../assets/img/icons/sort.png" alt="">
+    <p>Sort</p>
+</div> -->
+<div class="table-wrapper" *ngIf="tableData">
+    <table class="table">
+        <thead>
+            <tr class="header-row">
+                <th *ngFor="let name of tableData.header">{{ name }}</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <tr class="table-row" *ngFor="let row of tableData.rows; let i = index">
+                <td *ngFor="let item of row" >{{ item }}</td>
+                <td class="button-wrapper">
+                    <div class="buttons-border">
+                      <a target="_blank" [href]="brochureClick(i)" >
+                        <button class="custom-button no-border">Brochure
+                            <img [src]="url+'/assets/img/icons/download.png'"></button>
+                      </a>
+                        <button class="custom-button no-border blue" (click)="contactUsClick('')">Contact
+                            Us</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <button class="custom-gradient-button-text" (click)="loadMoreClick()">Load more</button> -->

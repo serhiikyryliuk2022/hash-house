@@ -1,0 +1,84 @@
+@import "variables";
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    user-select: none;
+
+    &.show {
+        display: flex;
+        background-color: rgba(245, 247, 250, 0.5);
+        box-sizing: border-box;
+    }
+
+    &.hide {
+        display: none;
+
+        .spinner-wrapper {
+            display: none;
+        }
+    }
+
+    &.animationShow {
+        animation: loading-show 0.5s both normal;
+
+        @keyframes loading-show {
+            0% {
+                display: flex;
+                opacity: 0;
+            }
+
+            100% {
+                background-color: rgba(245, 247, 250, 0.5);
+                box-sizing: border-box;
+                opacity: 1;
+            }
+        }
+    }
+
+    &.animationHide {
+        animation: loading-hide 0.5s both normal;
+
+        @keyframes loading-hide {
+            0% {
+                background-color: rgba(245, 247, 250, 0.5);
+                box-sizing: border-box;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    }
+
+    .spinner {
+        max-width: 100px;
+        max-height: 100px;
+        animation: loading-animation 1.2s infinite both;
+
+        @keyframes loading-animation {
+            0% {
+                transform: scale(1)
+            }
+
+            25% {
+                transform: scale(1.15);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+}

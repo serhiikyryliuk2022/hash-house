@@ -1,0 +1,14 @@
+<hashhouse-header 
+    [url]="url">
+</hashhouse-header>
+
+<router-outlet></router-outlet>
+
+<hashhouse-footer class="container" 
+    [model]="{
+        url: url,
+        social: social,
+        productsLinks: productsLinks,
+        servicesLinks: servicesLinks
+    }">
+</hashhouse-footer>

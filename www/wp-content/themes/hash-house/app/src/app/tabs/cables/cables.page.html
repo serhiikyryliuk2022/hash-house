@@ -1,0 +1,30 @@
+<div class="cables-container with-header-offset">
+
+    <hashhouse-panel-slider class="container small"
+        (onItemClick)="tableComponent.navigateToTable()"
+        [product]="productModel"
+        [items]="sliderModel"
+        [url]="url">
+    </hashhouse-panel-slider>
+
+    <hashhouse-panel-table #tableComponent class="container full"
+        (onBrochureClick)="downloadFile($event)"
+        (onContactUsClick)="downloadComponent.navigateToForm()"
+        [tableData]="tableModel"
+        [url]="url"
+        [cFields]="cFields">
+    </hashhouse-panel-table>
+
+    <hashhouse-panel-details class="container full"
+        [whyChoose]="whyChoose"
+        [model]="detailsModel">
+    </hashhouse-panel-details>
+
+    <hashhouse-panel-download #downloadComponent class="container full"
+        [slug]="'cables'"
+        [url]="url"
+        [count]="tableModel.count"
+        [dwCount]="tableModel.dwCount">
+    </hashhouse-panel-download>
+
+</div>

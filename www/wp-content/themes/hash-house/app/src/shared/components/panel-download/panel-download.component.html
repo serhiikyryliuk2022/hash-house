@@ -1,0 +1,45 @@
+<div class="left-side" #downloadFormSection>
+    <div class="download-card">
+        <div class="image-wrapper">
+            <img [src]="url+'/assets/img/icons/documents.png'" alt="">
+        </div>
+        <div class="card-info">
+            <h1>{{count}} Documents</h1>
+            <p>with detailed info</p>
+        </div>
+    </div>
+    <div class="download-card">
+        <div class="image-wrapper">
+            <img [src]="url+'/assets/img/icons/download-count.png'" alt="">
+        </div>
+        <div class="card-info">
+            <h1>{{dwCount}} downloads</h1>
+            <p>was carried out</p>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <h1>Download full product line</h1>
+    <form class="custom-form input-wrapper download-form" [formGroup]="downloadForm" (ngSubmit)="submitForm()">
+        <div class="input-wrapper">
+            <div class="input-row">
+                <label class="title">
+                    <p>Name<span *ngIf="isRequiredInput('name')" class="required-icon">*</span></p>
+                    <input class="custom-input" [class.not-valid]="isNotValidInput('name') && showFormValidation"
+                        type="text" formControlName="name" placeholder="Your Name">
+                </label>
+            </div>
+            <div class="input-row">
+                <label class="title">
+                    <p>Email<span *ngIf="isRequiredInput('email')" class="required-icon">*</span></p>
+                    <input class="custom-input" [class.not-valid]="isNotValidInput('email') && showFormValidation"
+                        type="email" formControlName="email" placeholder="Your Email Address" ngPattern="/^.+@.+\..+$/"
+                        required>
+                </label>
+            </div>
+        </div>
+        <button class="custom-button green" type="submit" [class.disabled]="isDisabledSubmit">Download
+            <img [src]="url+'/assets/img/icons/download-small.png'" alt="">
+        </button>
+    </form>
+</div>

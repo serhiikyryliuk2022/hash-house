@@ -1,0 +1,29 @@
+<div class="slider-container">
+    <div class="image-preview">
+        <div class="active-item-image">
+            <img *ngIf="activeItem?.src" [src]="activeItem?.src">
+        </div>
+        <div class="image-slider">
+            <button (click)="previousSlide()">
+                <img [src]="url+'/assets/img/icons/arrow-left.png'" alt="L">
+            </button>
+            <div class="wrapper">
+                <div class="slider">
+                    <div class="slide" *ngFor="let item of items; let i = index" (click)="selectSlide(i)">
+                        <img *ngIf="item.src" [src]="item.src">
+                    </div>
+                </div>
+            </div>
+            <button (click)="nextSlide()">
+                <img [src]="url+'/assets/img/icons/arrow-right.png'" alt="R">
+            </button>
+        </div>
+    </div>
+    <div class="active-item-information">
+        <h1 *ngIf="product.name" class="title">{{ product.name }}</h1>
+        <div *ngIf="product.description" [innerHtml]="product.description"></div>
+        <div class="button-wrapper">
+            <button class="custom-button gradient large" (click)="itemClick()">Find out the price</button>
+        </div>
+    </div>
+</div>

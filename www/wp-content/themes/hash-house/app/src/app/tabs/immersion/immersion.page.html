@@ -1,0 +1,64 @@
+<div class="introducing-container with-header-offset">
+  <!-- Block 1 -->
+  <section class="container full introducing-section">
+    <div class="row">
+      <div class="col">
+        <img class="context-image" [src]="block_1['context_image']">
+      </div>
+      <div class="col">
+        <div class="title">{{ block_1['title'] }}</div>
+        <p class="description" [innerHTML]="block_1['description']"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Overview -->
+  <section class="container product-overview bg-white small">
+    <div class="row">
+      <div class="col">
+        <div class="title">{{ product_overview['title'] }}</div>
+        <div class="description" [innerHTML]="product_overview['description']"></div>
+      </div>
+      <div class="col">
+        <img [src]="product_overview['image']">
+      </div>
+
+    </div>
+  </section>
+
+   <section class="container section-table bg-white small">
+    <div class="row">
+      <div class="col">
+        <div class="table">
+          <div class="row center">
+            <h3>{{ specification_sheet['title'] }}</h3>
+          </div>
+          <div class="row center">
+            <div class="table-wrapper">
+              <table [innerHTML]="specification_sheet['description']"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section-image-list  bg-dark full">
+    <div class="table-wrapper">
+      <div class="table" [innerHTML]="block_2['description']"></div>
+    </div>
+  </section>
+
+
+    <!-- Block 3 -->
+    <section class="container section-bottom bg-white small">
+      <div class="table-wrapper">
+        <img width="240"  class="aer" [src]="url+'/assets/img/aer.png'" alt="">
+
+        <!-- height: 107px; -->
+        <img src="{{ block_3['image_main'] }}">
+        <div class="table" [innerHTML]="block_3['description']"></div>
+      </div>
+    </section>
+
+</div>
